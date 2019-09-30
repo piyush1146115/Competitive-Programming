@@ -1,0 +1,36 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+struct Plusonegame{
+    string getorder(string s){
+        int len = s.size();
+        int ara[30], plus = 0, i;
+  		memset(ara, 0 , sizeof(ara));
+        for(i = 0; i < len ; i++){
+        	if(s[i] >= 48 && s[i] <= 57){
+            	 ara[s[i] - '0']++;
+            }
+              else
+               	plus++;
+        }
+          string st;
+               
+              for(i = 0; i < 10; i++){
+              	if(i != 0){
+                	if(plus > 0){
+                        st.push_back('+');
+                        plus--;
+                        }
+                }
+                  while(ara[i] > 0){
+                      st.push_back(i + 48);
+                          ara[i]--;
+                      }
+              }
+        while(plus > 0){
+            st.push_back('+');
+            plus--;
+            }
+        return st;
+    }
+};

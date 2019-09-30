@@ -1,0 +1,2 @@
+Have to special attention at palindromes
+if palindromes is prime then the output will be prime not emirp

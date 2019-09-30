@@ -1,0 +1,61 @@
+
+# Compiled Object files
+*.slo
+*.lo
+*.o
+*.obj
+*.ini
+
+
+# Precompiled Headers
+*.gch
+*.pch
+
+
+# Compiled Dynamic libraries
+*.so
+*.dylib
+*.dll
+
+
+# Fortran module files
+*.mod
+*.smod
+
+
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+*.lib
+
+
+# Executables
+*.exe
+*.out
+*.app
+
+#file extensions
+*.sql
+*.zip
+
+
+# Working directories
+/Java practice
+/Java program
+/Javascript Programs
+/SS
+/learning c++
+/Python Programming
+/Sorting
+/Special Program
+/Subeen cpbook part 2
+/Web Programming
+/Class work
+/Hash + Z-algorithm
+/Pointer from MyCodeSchool
+
+
+test.cpp
+untitledasdfa.cpp
+
