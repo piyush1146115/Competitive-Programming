@@ -14,5 +14,5 @@ from different online judges in  separated folder.
 >- **vjudge.com:**  piyush_15026
 >- **TOPH:**      piyush_15026
 
-<#### <i class="icon-pencil"></i> piyush123kantidas@gmail.com 
+#### <i class="icon-pencil"></i> piyush123kantidas@gmail.com 
 
