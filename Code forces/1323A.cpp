@@ -1,18 +1,18 @@
 /*
- * FILE: L - Pattern Find.cpp
+ * FILE: A.cpp
  *
  * @author: Piyush Kanti Das <piyush123kantidas[at]gmail[dot]com>
  *
  * LINK:
  *
- * DATE CREATED: 13.08.2019 12:45:50 +06
+ * DATE CREATED: 14.03.2020 14:12:44 +06
  *
  * DESCRIPTION:
  *
  * DEVELOPMENT HISTORY:
  * Date         Version     Description
  * --------------------------------------------------------------
- * 13-08-2019	1.0         File Created
+ * 14-03-2020	1.0         File Created
  *
  */
 
@@ -39,15 +39,21 @@ typedef unsigned long long  ull;
 typedef pair<int, int>      pii;
 typedef vector<pii>         vpii;
 typedef vector<int>         vi;
+typedef vector< vi >        vvi;
 typedef vector<long long>   vll;
+
 
 #define __FastIO        ios_base::sync_with_stdio(false); cin.tie(0)
 
 #define forr(i, a, b)   for (__typeof (a) i=a; i<=b; i++)
 #define rof(i, b, a)    for (__typeof (a) i=b; i>=a; i--)
 #define rep(i, n)       for (__typeof (n) i=0; i<n; i++)
-#define forit(i, s)     for (__typeof ((s).end ()) i = (s).begin (); i != (s).end (); ++i)
+#define tr(i,c) 		for(typeof((c)).begin() i = (c).begin(); i != (c).end(); i++)
 #define all(ar)         ar.begin(), ar.end()
+
+#define present(c,x) ((c).find(x) != (c).end()) // for map/set
+#define cpresent(c,x) (find(all(c),x) != (c).end()) // for vectors
+
 
 #define fill(ar)   		memset(ar, -1, sizeof(ar))
 #define clr(a)          memset(a, 0, sizeof(a))
@@ -58,6 +64,8 @@ typedef vector<long long>   vll;
 
 #define pb              push_back
 #define MP 				make_pair
+#define sz(a)           int((a).size())
+
 
 #define debug1(x)       cerr << #x << ": " << x << endl
 #define debug2(x, y)    cerr << #x << ": " << x << '\t' << #y << ": " << y << endl
@@ -68,7 +76,7 @@ typedef vector<long long>   vll;
 #define INF             0x7fffffff
 #define MOD             1000000007
 #define EPS             1e-7
-#define MAX             2000005
+#define MAX             100005
 
 int Set(int N,int pos){return N=N | (1<<pos);}
 int Reset(int N,int pos){return N= N & ~(1<<pos);}
@@ -87,56 +95,37 @@ ll BM( ll a , ll b , ll m )
 
 //Auto-format --> ctrl+shift+a
 /********************* Code starts here ************************/
-
-int failure[MAX];
+int ara[105];
 int main() {
     __FastIO;   //Be aware to use it!
-    int n, m, test;
+    
+    int n, test;
     cin >> test;
-    string t, p, s;
+    
+    
     while(test--){
-		cin >> t >> p;
-		s = p + "$"+  t;
-		n = (int)s.size();
-		m = (int)p.size();
-		
-		failure[0] = 0;
-		failure[1] =  0;//base case
-		
-		for(int i = 2; i <= n; i++){
-			int j = failure[i - 1];
-			
-			while(true){
-				if(s[j] == s[i - 1]){
-					failure[i] = j + 1;
-					break;
-				}
-				if(j == 0){
-					failure[i] = 0;
-					break;
-				}
-				j = failure[j];
+		cin >> n;
+		int  ind, flag = 0;
+		forr(i, 1, n){
+			cin >> ara[i];
+			if(ara[i] % 2 == 0){
+				ind = i;
+				flag = 1;
 			}
 		}
-		vi v;
-		for(int i = 1; i <= n; i++){
-			if(failure[i] == m){
-				v.pb(i - 2*m);
-				//debug2(i, m);
-			}
-		}
-		if((int)v.size() == 0){
-			cout << "Not Found" << endl;
+		
+		if(flag){
+			cout << 1 << endl << ind << endl;
 		}
 		else{
-			cout << (int)v.size() << endl << v[0];
-			
-			for(int i = 1; i < (int)v.size(); i++){
-				cout << " " << v[i];
+			if(n > 1){
+				cout << 2 << endl << 1 << " " << 2 << endl;
 			}
-			cout << endl;
+			else{
+				cout << -1 << endl;
+			}
 		}
+		
 	}
-
     return 0;
 }
