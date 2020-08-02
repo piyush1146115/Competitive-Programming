@@ -1,0 +1,20 @@
+class Solution {
+public:
+    int arrangeCoins(int n) {
+        long long int calc,  mid, ans, lo = 0, hi = n;
+        
+        while(lo <= hi){
+            mid = (lo + hi)/2;
+            calc = (mid * (mid + 1))/2;
+            if(calc <= n){
+                ans = mid;
+                lo = mid + 1;
+            }
+            else{
+                hi = mid - 1;
+            }
+        }
+        
+        return ans;
+    }
+};

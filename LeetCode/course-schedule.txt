@@ -1,0 +1,39 @@
+class Solution {
+public:
+    bool isCycle;
+    
+    void dfs(int node, vector<int>&color, vector<vector<int> >& gr){
+        if(color[node] == 1){
+            isCycle = true;
+            return;
+        }
+        
+        color[node] = 1;
+        
+        for(int i = 0; i < gr[node].size(); i++){
+            if(color[gr[node][i]] != 2){
+                dfs(gr[node][i], color, gr);
+            }
+        }
+        color[node] = 2;
+        return;
+    }
+    
+    bool canFinish(int numCourses, vector<vector<int>>& prerequisites) {
+        vector< vector<int> > gr(numCourses + 2);
+        vector<int> color(numCourses + 2);
+        int n = prerequisites.size();
+        for(int i = 0; i < n; i++){
+            gr[prerequisites[i][0]].push_back(prerequisites[i][1]);
+        }
+        
+        isCycle = false;
+        for(int i = 0; i < numCourses; i++){
+            if(color[i] == 0){
+                dfs(i, color, gr);
+            }
+        }
+        
+        return (not isCycle);
+    }
+};
