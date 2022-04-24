@@ -1,68 +1,52 @@
-class Node {
-    public:
-    bool endmark;
-    Node *next[27];
-    
-    Node(){
-        endmark = false;
-        
-        for(int i = 0; i < 26; i++)
-            next[i] = NULL;
-    }
-};
-
 class Trie {
 public:
-    /** Initialize your data structure here. */
-    Node* root; 
+     struct TrieNode{
+        bool endWord = false;
+        TrieNode* child[26];
+    };
+    
+    
+    TrieNode* root;
+    
     Trie() {
-        root = new Node();
+        root = new TrieNode();    
     }
     
-    /** Inserts a word into the trie. */
     void insert(string word) {
-        Node *curr = root;
-        
-        for(int i = 0; i < word.size(); i++){
-            int id = word[i] - 'a';
-            
-            if(curr -> next[id] != NULL)
-                curr = curr -> next[id];
-            else{
-                curr -> next[id] = new Node();
-                curr = curr -> next[id];
-                }
+        TrieNode* cur=root;
+    
+        for(auto c: word){
+            int nxt = c - 'a';
+            cout << nxt << endl;
+            if(cur->child[nxt] == NULL)
+                cur->child[nxt] = new TrieNode();
+            cur = cur->child[nxt];   
         }
-        curr -> endmark = true;
+        cur->endWord = true;
     }
     
-    /** Returns if the word is in the trie. */
     bool search(string word) {
-        Node *curr = root;
-        
-        for(int i = 0; i < word.size(); i++){
-            int id = word[i] - 'a';
-            
-            if(curr -> next[id] != NULL)
-                curr = curr -> next[id];
-            else
+          TrieNode* cur=root;
+    
+        for(auto c: word){
+            int nxt = c - 'a';
+            if(cur->child[nxt] == NULL)
                 return false;
+            cur = cur->child[nxt];   
         }
-        return curr -> endmark;
+        return cur->endWord;
     }
     
-    /** Returns if there is any word in the trie that starts with the given prefix. */
     bool startsWith(string prefix) {
-        Node *curr = root;
-        
-        for(int i = 0; i < prefix.size(); i++){
-            int id = prefix[i] - 'a';
-            
-            if(curr -> next[id] != NULL)
-                curr = curr -> next[id];
-            else
+         TrieNode* cur=root;
+    
+        for(auto c: prefix){
+            int nxt = c - 'a';
+            if(cur->child[nxt] == NULL)
                 return false;
+            cur = cur->child[nxt];   
         }
+        
         return true;
     }
 };
