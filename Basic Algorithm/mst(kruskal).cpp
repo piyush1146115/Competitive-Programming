@@ -29,7 +29,7 @@ int findd(int r)
 int mst(int n)
 {
     for(int i = 0; i <= n; i++)
-    pr[i] = i;
+        pr[i] = i;
 
     sort(e.begin(), e.end());
     int cnt = 0, s = 0;
