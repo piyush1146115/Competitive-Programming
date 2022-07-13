@@ -1,0 +1,47 @@
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+ * };
+ */
+class Solution {
+public:
+    
+    bool find(TreeNode* root, int target, string &path){
+        if(root==NULL)
+            return false;
+        
+        if(root->val == target){
+            return true;
+        }
+        
+        if(find(root->left, target, path)){
+            path.push_back('L');
+        }
+        else if(find(root->right, target, path)){
+            path.push_back('R');
+        }
+        
+        return !path.empty();
+    }
+    
+    string getDirections(TreeNode* root, int startValue, int destValue) {
+       
+        string srcPath, dstPath;
+        
+        find(root, startValue, srcPath);
+        find(root, destValue, dstPath);
+        
+        while (!srcPath.empty() && !dstPath.empty() && srcPath.back() == dstPath.back()){
+            srcPath.pop_back();
+            dstPath.pop_back();
+        }
+        
+        return string(srcPath.size(), 'U') + string(dstPath.rbegin(), dstPath.rend());
+    }
+};
